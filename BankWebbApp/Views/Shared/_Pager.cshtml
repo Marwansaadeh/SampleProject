@@ -1,0 +1,30 @@
+﻿@model BankWebbApp.ViewModels.PagingViewModel
+
+@if (Model.ShowPrevButton)
+{
+    <a href="#" onclick="window.location.href=updateOrAddQueryStringParameter(window.location.href,'page', '@(Model.CurrentPage-1)')">Prev</a>
+
+}
+@if (Model.ShowNextButton)
+{
+    <a href="#" onclick="window.location.href=updateOrAddQueryStringParameter(window.location.href,'page', '@(Model.CurrentPage+1)')">Next</a>
+}
+
+
+
+<script>
+    function updateOrAddQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
+    }
+    $("#pageSize").on("change", function () {
+        var newVal = $("#pageSize").val();
+        window.location.href = updateOrAddQueryStringParameter(window.location.href, 'pageSize', newVal);
+    });
+</script>

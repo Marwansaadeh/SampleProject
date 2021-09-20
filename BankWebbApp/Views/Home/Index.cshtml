@@ -1,0 +1,132 @@
+﻿@model BankWebbApp.ViewModels.StatisticsViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mt-5 font-weight-bold text-center">Statistic details of the bank</h4>
+    </div>
+</div>
+<div class="row mt-3 pt-3" style="background-color: #eeeeee">
+    <div class="col-md-12">
+        <!-- Card group -->
+        <div class="card-group">
+
+            <!-- Card -->
+            <div class="card mb-4">
+
+                <!-- Card content -->
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h6 class="card-title">Number of customers</h6>
+                    <!-- Text -->
+                    <br />
+
+                    <p><span class="ml-2" style="font-size: 30px;"></span>@Model.NumberOfCustomers</p>
+
+                </div>
+                <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+            <!-- Card -->
+            <div class="card mb-4">
+
+                <!-- Card content -->
+                <div class="card-body">
+                    <!-- Title -->
+                    <h6 class="card-title">Number of accounts</h6>
+                    <!-- Text -->
+                    <br />
+                    <p><span class="ml-2" style="font-size: 30px;"></span>@Model.NumberOfAccounts</p>
+                </div>
+                <!-- Card content -->
+
+            </div>
+
+            <div class="card mb-4">
+
+                <!-- Card content -->
+                <div class="card-body">
+                    <!-- Title -->
+
+                    <h6 class="card-title">The Sum Balance of all accounts</h6>
+                    <br />
+                    <!-- Text -->
+                    <p><span class="ml-2" style="font-size: 30px;"></span>@Model.SumofAccountsBalances</p>
+                </div>
+                <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+
+
+
+        </div>
+    </div>
+
+
+</div>
+
+@foreach (var countrystatistic in Model.countryStatisticsViewModels)
+{
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="mt-2 font-weight-bold text-center">Statistic details in @countrystatistic.CountryName</h4>
+
+        <a asp-action="HighestAccounts" asp-controller="Home" asp-route-CountryName="@countrystatistic.CountryName">  <h6 class="mt-2 font-weight-bold text-center">View top accounts in @countrystatistic.CountryName</h6></a>
+    </div>
+</div>
+
+                                <div class="row mt-3 pt-3" style="background-color: #eeeeee">
+                                    <div class="col-md-12">
+
+                                        <!-- Card group -->
+                                        <div class="card-group">
+                                            <div class="card mb-4">
+
+                                                <!-- Card content -->
+                                                <div class="card-body">
+                                                    <!-- Title -->
+                                                    <h6 class="card-title">Number of customers</h6>
+                                                    <br />
+                                                    <!-- Text -->
+                                                    <p><span class="ml-2" style="font-size: 30px;"></span>@countrystatistic.statisticsViewModel.NumberOfCustomers</p>
+
+                                                </div>
+                                                <!-- Card content -->
+
+                                            </div>
+
+                                            <div class="card mb-4">
+
+                                                <!-- Card content -->
+                                                <div class="card-body">
+                                                    <!-- Title -->
+                                                    <h6 class="card-title">Number of accounts</h6>
+                                                    <br />
+                                                    <!-- Text -->
+                                                    <p><span class="ml-2" style="font-size: 30px;"></span>@countrystatistic.statisticsViewModel.NumberOfAccounts</p>
+
+
+
+                                                </div>
+                                                <!-- Card content -->
+
+                                            </div>
+
+                                            <div class="card mb-4">
+
+                                                <!-- Card content -->
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Sum of balances</h6>
+                                                    <br />
+                                                    <!-- Text -->
+                                                    <p><span class="ml-2" style="font-size: 30px;"></span>@countrystatistic.statisticsViewModel.SumofAccountsBalances</p>
+
+                                                </div>
+                                                <!-- Card content -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}

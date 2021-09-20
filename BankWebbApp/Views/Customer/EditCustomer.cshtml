@@ -1,0 +1,106 @@
+﻿@model BankWebbApp.ViewModels.CustomerViewModel
+@{ ViewData["Title"] = "EditCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<form asp-action="EditCustomer" method="post">
+
+    <div class="card-body">
+        <span class="text-success">@Model.SucessMessage</span>
+
+        @*<span class="text-success">@Model.Confirmation</span>*@
+        <div class="form-group">
+            <label asp-for="@Model.Givenname">Name</label>
+            <input asp-for="@Model.Givenname" value="@Model.Givenname" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Givenname" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Gender">Gender</label>
+            <br />
+            @foreach (var gender in Model.Genders)
+            {
+                <input type="radio" asp-for="@Model.Gender" value="@gender" />
+                <label>@gender</label><br />
+            }
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Surname">Surname</label>
+            <input asp-for="@Model.Surname" value="@Model.Surname" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Streetaddress">Streetaddress</label>
+            <input asp-for="@Model.Streetaddress" value="@Model.Streetaddress" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Streetaddress" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.City">City</label>
+            <input asp-for="@Model.City" value="@Model.City" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.City" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Zipcode">Zipcode</label>
+            <input asp-for="@Model.Zipcode" value="@Model.Zipcode" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Zipcode" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Country">Country</label>
+            <input asp-for="@Model.Country" value="@Model.Country" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Country" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CountryCode">CountryCode</label>
+            <input asp-for="@Model.CountryCode" value="@Model.CountryCode" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.CountryCode" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Birthday">Birthday</label>
+            <input id="datePickerId" type="date" max="@DateTime.Now.Date" asp-for="@Model.Birthday" class="form-control">
+            <span asp-validation-for="@Model.Birthday" class="text-danger"></span>
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.NationalId">NationalId</label>
+            <input asp-for="@Model.NationalId" value="@Model.NationalId" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.NationalId" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Telephonecountrycode">Telephonecountrycode</label>
+            <input asp-for="@Model.Telephonecountrycode" value="@Model.Telephonecountrycode" class="form-control">
+            <span asp-validation-for="@Model.Telephonecountrycode" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Telephonenumber">Telephonenumber</label>
+            <input asp-for="@Model.Telephonenumber" value="@Model.Telephonenumber" class="form-control">
+            <span asp-validation-for="@Model.Telephonenumber" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Emailaddress">Emailaddress</label>
+            <input asp-for="@Model.Emailaddress" value="@Model.Emailaddress" class="form-control" placeholder="">
+            <span asp-validation-for="@Model.Emailaddress" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="@Model.CustomerId" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+@{
+    var max = DateTime.Now.Date;
+}
+<script>
+    datePickerId.max = new Date().toISOString().split("T")[0];
+
+</script>

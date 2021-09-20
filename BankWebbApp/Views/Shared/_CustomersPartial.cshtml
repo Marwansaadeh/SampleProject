@@ -1,0 +1,96 @@
+﻿@model BankWebbApp.ViewModels.CustomersViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+@{Layout = null; }
+@{
+
+    string GetClickSortOrder(string columnName)
+    {
+        if (columnName == Model.PagingViewModel.ColumnName)
+        {
+            string o = "asc";
+            if (Model.PagingViewModel.Sort == "asc")
+            {
+                o = "desc";
+            }
+            return o;
+        }
+        else
+        {
+            return "asc";
+        }
+    }
+
+    void RenderSortIcon(string columnName)
+    {
+        if (columnName != Model.PagingViewModel.ColumnName)
+        {
+
+            return;
+        }
+        string o = "asc";
+        if (Model.PagingViewModel.Sort == "desc")
+        {
+            o = "desc";
+        }
+
+        <i class="fa fa-fw fa-sort-@o"></i>
+    }
+
+}
+<div class="card-body">
+    <div class="dropdown" id="sortdropdownlist">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Chooose a sort coulmn
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@GetClickSortOrder("CustomerId"),CustomerId,@Model.Search')">Customer Number @{RenderSortIcon("CustomerId");} </a><br />
+            <a href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@GetClickSortOrder("NationalID"),NationalID,@Model.Search')">National ID Number @{RenderSortIcon("National ID Number");} </a><br />
+            <a href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@GetClickSortOrder("GivenName"),GivenName,@Model.Search')">Given Name @{RenderSortIcon("Given Name");} </a><br />
+            <a href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@GetClickSortOrder("Address"),Address,@Model.Search')">Address @{ RenderSortIcon("Address");} </a><br />
+            <a href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@GetClickSortOrder("City"),City,@Model.Search')">City @{ RenderSortIcon("City");} </a><br />
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer Number</th>
+                <th>National ID Number </th>
+                <th>Given Name</th>
+                <th>Addres</th>
+                <th>City</th>
+                <th>Customer Details</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>Edit Customer</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.CustomerId</td>
+                    <td>
+                        @item.NationalId
+                    </td>
+                    <td>@item.Givenname</td>
+                    <td>@item.Streetaddress</td>
+                    <td>@item.City</td>
+                    <td><a asp-action="CustomerDetails" asp-controller="Customer" asp-route-CustomerID="@item.CustomerId">Customer Details</a></td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td><a asp-action="EditCustomer" asp-controller="Customer" asp-route-id="@item.CustomerId">Edit</a></td>
+                    }
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+    @await Html.PartialAsync("_PagerBootstrap", Model.PagingViewModel)
+
+
+

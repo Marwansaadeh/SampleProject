@@ -1,0 +1,46 @@
+﻿@model BankWebbApp.ViewModels.PagingViewModel
+@{Layout = null; }
+
+@{ int p = 1;
+    int plusOne = Model.CurrentPage+1;
+    int minusOne = Model.CurrentPage - 1;
+ }
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+
+        @if (Model.ShowPrevButton)
+        {
+
+    <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous" onclick="getResult('@minusOne,@Model.Sort,@Model.ColumnName')">
+            <span aria-hidden="true">Prev</span>
+        </a>
+    </li>
+}
+
+
+        @foreach (var page in Model.GetPages)
+        {
+            if (page == "...")
+            {
+    <li class="page-item disabled">...</li> }
+                    else
+                    {
+                        p = Convert.ToInt32(page);
+    <li class="page-item  @(Model.CurrentPage == p ? "active" : "")"><a class="page-link" href="#" onclick="getResult('@p,@Model.Sort,@Model.ColumnName')">@p</a></li>
+}
+
+}
+
+        @if (Model.ShowNextButton)
+        {
+    <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next" onclick="getResult('@plusOne,@Model.Sort,@Model.ColumnName')">
+            <span aria-hidden="true">Next</span>
+        </a>
+    </li>}
+    </ul>
+</nav>
+
+

@@ -1,0 +1,24 @@
+﻿@model BankWebbApp.ViewModels.TransactionViewModel
+
+    <form asp-action="Withdraw" method="post">
+        <div class="card-body">
+            <span class="text-success">@Model.Confirmation</span>
+
+            <div class="form-group">
+                <label asp-for="@Model.Amount">Amount</label>
+                <input asp-for="@Model.Amount" value="" class="form-control" placeholder="Enter Amount">
+                <span asp-validation-for="@Model.Amount" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Symbol">Symbol</label>
+                <input asp-for="@Model.Symbol" class="form-control" placeholder="Enter Symbol">
+
+            </div>
+            <input type="hidden" asp-for="@Model.AccountId" />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>

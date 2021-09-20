@@ -1,0 +1,47 @@
+﻿@model BankWebbApp.ViewModels.AplicationUser
+<div class="callout callout-info">
+    <form asp-action="AddApplicationUser" method="post" role="form" id="quickForm">
+
+        <div class="card-body">
+            <span class="text-success">@Model.SucessMessage</span>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" value="" class="form-control" placeholder="Enter Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" class="form-control" placeholder="Enter Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.AllRoles">Rolles</label>
+                <span asp-validation-for="AllRoles" class="text-danger"></span>
+                <ul>
+                    @for (var i = 0; i < Model.AllRoles.Count; i++)
+                    {
+                        <li>
+                            <input type="checkbox" asp-for="@Model.AllRoles[i].IsSelected" />
+                            <label asp-for="@Model.AllRoles[i].IsSelected">@Model.AllRoles[i].Name</label>
+                            <input type="hidden" asp-for="@Model.AllRoles[i].Id" />
+                            <input type="hidden" asp-for="@Model.AllRoles[i].Name" />
+                        </li>
+                    }
+                </ul>
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>@ViewData["Title"] - BankManagementWebbApp</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/theme/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/theme/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/main/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body class="hold-transition layout-top-nav">
+
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand-md navbar-dark navbar-info">
+            <div class="container">
+                <a asp-action="index" asp-controller="Home" class="navbar-brand">
+                    <img src="~/theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                         style="opacity: .8">
+                    <span class="brand-text font-weight-light">Bank App</span>
+                </a>
+
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a asp-action="index" asp-controller="Home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Customer" asp-action="Customers" class="nav-link">Customers</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Admin" asp-action="index" class="nav-link">Admin</a>
+                            </li>
+                        }
+                    </ul>
+                    <span id="error" class="text-danger font-weight"></span>
+                    <form name="myForm" class="form-inline ml-0 ml-md-3" onsubmit="return validateForm()" method="get">
+                        <div class="input-group input-group-sm">
+
+                            <input value="@ViewData["GetValue"]" name="CustomerID" type="search" class="form-control form-control-navbar" placeholder="Search for a customer" aria-label="Search">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit" asp-controller="Customer" asp-action="CustomerDetails">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- SEARCH FORM -->
+                    <partial name="_LoginPartial" />
+                </div>
+
+            </div>
+        </nav>
+        <div class="content-wrapper">
+
+            <div class="container">
+
+                <section class="content">
+                    @RenderBody()
+                </section>
+
+            </div>
+
+        </div>
+        <div class="container">
+            <footer class="main-footer">
+                <strong>Bank Web application management system</strong>
+            </footer>
+        </div>
+
+    </div>
+    <!-- jQuery -->
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/theme/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/theme/dist/js/demo.js"></script>
+
+    <script>
+
+        function validateForm() {
+            var x = document.forms["myForm"]["CustomerID"].value;
+            if (x == "") {
+
+                document.getElementById("error").innerHTML = "Please type customer number"
+                return false;
+            }
+            if (isNaN(x)) {
+                document.getElementById("error").innerHTML = "Please type a number"
+                return false;
+            }
+        }
+    </script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@model BankWebbApp.ViewModels.CustomersViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="myform">
+
+    <div class="card">
+        <div class="card-header">
+            <h2 style="text-decoration:underline;">List of the Customers</h2>
+        </div>
+        <br />
+        <div class="form-inline m-lg-3">
+            <div class="input-group input-group-sm">
+                <input id="searchValue" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                @*<input asp-for="@Model.PagingViewModel.Sort" class="form-control" name="sort" type="hidden" placeholder="Search" aria-label="Search">*@
+                @*<input asp-for="@Model.PagingViewModel.ColumnName" class="form-control" name="ColumnName" type="hidden" placeholder="Search" aria-label="Search">*@
+
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" href="#" onclick="getResult('@Model.PagingViewModel.CurrentPage,@Model.PagingViewModel.Sort,@Model.PagingViewModel.ColumnName,@Model.Search')">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        
+            <div id="customertable">
+
+                @await Html.PartialAsync("_CustomersPartial", Model)
+            </div>
+        </div>
+    </div>
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function Test2(p) {
+            //var post_url = "Search?Page=" + p;
+            //var method = $(this).attr("method");
+            //var form_data = $(this).serialize();
+            var pp = p.split(",");
+            console.log(pp);
+            console.log(pp[0]);
+            $.ajax({
+                url: '@Url.Action("Search")',
+                data: {
+                    "page":pp[0],
+                    "columnname":pp[2],
+                    "sort":pp[1]
+            },
+                update: "#customertable",
+                success: function (data) {
+                    $('#customertable').html(data);
+
+                }
+            });
+
+            //$.ajax({
+            //    url: post_url,
+            //    type: method,
+            //    data: form_data,
+            //    update: "#customertable",
+            //    success: function (data) {
+            //        $('#customertable').html(data);
+
+            //    }
+            //});
+        };
+        function getResult(p) {
+            var pp = p.split(",");
+            console.log(pp);
+            console.log(pp[0]);
+            //var post_url = `Search?page=${pp[0]}&sort=${pp[1]}&columnname=${pp[2]}&search=${pp[3]}`;
+            var post_url = `Search?page=${pp[0]}&sort=${pp[1]}&columnname=${pp[2]}&search=${pp[3]}`;
+            console.log(pp[1]);
+
+            //var form_data = $(this).serialize();
+            $.ajax({
+                url: '@Url.Action("Search")',
+                data: {
+                    "page":pp[0],
+                    "columnname":pp[2],
+                    "sort": pp[1],
+                    "search": document.getElementById("searchValue").value
+            },
+                update: "#customertable",
+                success: function (data) {
+                    $('#customertable').html(data);
+
+                }
+            });
+        }
+    </script>
+}
+

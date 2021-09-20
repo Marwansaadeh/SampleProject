@@ -1,0 +1,66 @@
+﻿@model BankWebbApp.ViewModels.CustomerDetailsViewModel;
+@{
+    ViewData["Title"] = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CustomerDetails</h1>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-12">
+        <div class="well details">
+            <div class="col-sm-12">
+                <div class="callout callout-info">
+                    <h2 style="text-decoration:underline;">@Model.Givenname</h2>
+                    <ul>
+                        <li><strong>CustomerId: </strong>@Model.CustomerId </li>
+
+                        <li><strong>Surname:</strong>@Model.Surname </li>
+                        <li><strong>Telephone number:</strong>@Model.Telephonenumber </li>
+                        <li><strong>Email: </strong>@Model.Emailaddress </li>
+                        <li><strong>Birthday: </strong>@Model.Birthday </li>
+                        <li><strong>City: </strong>@Model.City </li>
+                        <li><strong>Country: </strong>@Model.Country </li>
+                        <li><strong>CountryCode: </strong>@Model.CountryCode </li>
+                        <li><strong>Streetaddress: </strong>@Model.Streetaddress </li>
+                        <li><strong>Telephonecountrycode: </strong>@Model.Telephonecountrycode </li>
+                        <li><strong>Gender: </strong>@Model.Gender </li>
+                    </ul>
+                    @if (Model.CustomerAccountsSummary.Count() > 1)
+                    {
+                        <h2 style="text-decoration:underline;">
+                            Accounts
+                        </h2>
+
+                    }
+                    else
+                    {
+                        <h2 style="text-decoration:underline;">
+                            Account
+                        </h2>
+                    }
+
+                    @foreach (var item in Model.CustomerAccountsSummary)
+                    {
+               <a style="background-color:#218dbc" asp-action="AccountDetails" asp-controller="Account" asp-route-id="@item.Accounts"><strong>Account Number: </strong>@item.Accounts </a>
+                        <p><strong>Balance:</strong>@item.AccountsBalances </p>
+
+
+                        <a asp-action="Deposit" asp-controller="Account" asp-route-id="@item.Accounts" class="btn btn-block btn-primary btn-flat">Make a deposit</a>
+
+                        <a asp-action="Withdraw" asp-controller="Account" asp-route-id="@item.Accounts" class="btn btn-block btn-info btn-flat">Withdraw</a>
+                        <a asp-action="Transfer" asp-controller="Account" asp-route-id="@item.Accounts" class="btn btn-block btn-success btn-flat">Transfer</a>
+                        <br />
+                    }
+
+                    @if (Model.CustomerAccountsSummary.Count() > 1)
+                    {
+                        <h2 style="text-decoration:underline;">Total Balances: @Model.Totalbalance </h2>
+
+                    }
+
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@model BankWebbApp.ViewModels.EditApplicationUser
+<div class="callout callout-info">
+
+    <form asp-action="EditApplicationUser" method="post" role="form" id="quickForm">
+        <span class="text-success">@Model.SucessMessage</span>
+
+        <div class="card-body">
+            <input type="hidden" asp-for="@Model.Id" />
+
+            <div class="form-group">
+                <label asp-for="@Model.Email">Email</label>
+                <input asp-for="@Model.Email" value="@Model.Email" class="form-control" placeholder="Enter Email">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password">Password</label>
+                <input asp-for="@Model.Password" class="form-control" value="@Model.Password" placeholder="Enter a new password">
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ConfirmPassword">Confirm Password</label>
+                <input asp-for="@Model.ConfirmPassword" class="form-control" value="@Model.ConfirmPassword" placeholder="Confirm Password">
+                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.AllRoles">Rolles</label>
+                <span asp-validation-for="AllRoles" class="text-danger"></span>
+
+                <ul>
+                    @for (var i = 0; i < Model.AllRoles.Count; i++)
+                    {
+                        <li>
+                            <input type="checkbox" asp-for="@Model.AllRoles[i].IsSelected" />
+                            <label asp-for="@Model.AllRoles[i].IsSelected">@Model.AllRoles[i].Name</label>
+                            <input type="hidden" asp-for="@Model.AllRoles[i].Id" />
+                            <input type="hidden" asp-for="@Model.AllRoles[i].Name" />
+                        </li>
+                    }
+                </ul>
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,251 @@
+﻿
+/*table {
+    width: 100%;
+    border-collapse: collapse;
+}
+ Zebra striping 
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+        
+    }
+
+         Hide table headers (but not display: none;, for accessibility) 
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        border: 9px solid #ccc;
+    }
+
+    td {
+         Behave  like a "row" 
+        border: none;
+        border-bottom: 1px solid #17a2b8;
+        position: relative;
+        padding-left: 50%;
+    }
+
+        td:before {
+             Now like a table header 
+            position: absolute;
+             Top/left values mimic padding 
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+        td:nth-of-type(1):before {
+            content: "Customer Number";
+        }
+
+        td:nth-of-type(2):before {
+            content: "National ID Number";
+        }
+
+        td:nth-of-type(3):before {
+            content: "Given Name";
+        }
+
+        td:nth-of-type(4):before {
+            content: "Address";
+        }
+
+        td:nth-of-type(5):before {
+            content: "City";
+        }
+
+        td:nth-of-type(6):before {
+            content: "Customer Details";
+        }
+
+       
+
+      
+}*/
+@media only screen and (max-width: 580px) {
+
+    h1, .h1 {
+        font-size: 25px;
+    }
+
+    h2, .h2 {
+        font-size: 21px
+    }
+
+    h3, .h3 {
+        font-size: 19px;
+    }
+    
+   /* .table {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 0 1em 0;
+        padding: 0;
+        font-size: 10px;
+    }*/
+
+        .table td, .table th {
+            padding: 1.4rem;
+        }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        border: 4px solid #117a8b !important;
+        
+    }
+    /* Zebra striping */
+    tr:nth-of-type(odd) {
+        background: #eee;
+    }
+
+    th {
+        background: #333;
+        color: white;
+        font-weight: bold;
+    }
+
+    td, th {
+        padding: 6px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    .login-page,
+    .register-page {
+        background: #f4f6f9;
+        height: auto;
+        padding-top: 30% !important;
+    }
+    element.style {
+        min-height: 0px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        border: 1px solid #ccc ;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none !important;
+        border-bottom: 1px solid #eee !important;
+        position: relative !important;
+        padding-left: 50% !important;
+                 
+
+    }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute !important;
+            /* Top/left values mimic padding */
+            left: 6px !important;
+            width: 45% !important;
+            padding-right: 10px !important;
+            white-space: nowrap !important;   
+            top:inherit;
+        }
+    #customertable td:nth-of-type(1):before {
+        content: "Customer number";
+    }
+
+    #customertable td:nth-of-type(2):before {
+        content: "National ID Number";
+    }
+
+    #customertable td:nth-of-type(3):before {
+        content: "Given Name";
+    }
+
+    #customertable td:nth-of-type(4):before {
+        content: "Address";
+    }
+
+    #customertable td:nth-of-type(5):before {
+        content: "City";
+    }
+
+    #customertable td:nth-of-type(6):before {
+        content: "Customer Details";
+    }
+
+    #transactiontable td:nth-of-type(1):before {
+        content: "Transaction Id";
+    }
+
+    #transactiontable td:nth-of-type(2):before {
+        content: "Type";
+    }
+
+    #transactiontable td:nth-of-type(3):before {
+        content: "Operation";
+    }
+
+    #transactiontable td:nth-of-type(4):before {
+        content: "Amount";
+    }
+
+    #transactiontable td:nth-of-type(5):before {
+        content: "Balance";
+    }
+
+    #transactiontable td:nth-of-type(6):before {
+        content: "Symbol";
+    }
+    #transactiontable td:nth-of-type(7):before {
+        content: "Bank";
+    }
+    #transactiontable td:nth-of-type(8):before {
+        content: "Account";
+
+    }
+
+}
+
+    .main-footer {
+        background: #fff;
+        border-top: 0px solid #dee2e6;
+        color: #869099;
+        padding: 1rem;
+    }
+
+
+.login-page,
+.register-page {
+    background: #f4f6f9;
+    height: auto;
+    padding-top:11%;
+}

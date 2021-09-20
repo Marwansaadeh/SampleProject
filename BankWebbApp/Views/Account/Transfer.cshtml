@@ -1,0 +1,43 @@
+﻿@model BankWebbApp.ViewModels.TransferTransactionViewModel
+<div class="callout callout-info">
+   
+
+    <form asp-action="Transfer" method="post" role="form" id="quickForm">
+        <span class="text-success">@Model.Confirmation</span>
+
+        <input type="hidden" asp-for="@Model.AccountId" />
+        <div class="card-body">
+            <div class="form-group">
+                <label>From Account Number</label>
+                <p><strong>@Model.AccountId</strong> </p>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Amount">Amount</label>
+                <input asp-for="@Model.Amount" value="" class="form-control" placeholder="Enter Amount">
+                <span asp-validation-for="@Model.Amount" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Symbol">Symbol</label>
+                <input asp-for="@Model.Symbol" class="form-control" placeholder="Enter Symbol">
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Bank">Bank</label>
+                <input asp-for="@Model.Bank" class="form-control" placeholder="Enter Bank">
+
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ReceivedAccount">To Account</label>
+                <input asp-for="@Model.ReceivedAccount" value="" class="form-control" placeholder="Enter Account">
+                <span asp-validation-for="@Model.ReceivedAccount" class="text-danger"></span>
+
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+    </div>

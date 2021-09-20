@@ -1,0 +1,83 @@
+﻿@model BankWebbApp.ViewModels.AccountViewModel;
+   
+
+        @{
+           Model.UserAccountTransctions.CurrentLoadNumber=  Model.UserAccountTransctions.CurrentLoadNumber + 20;
+           
+        }
+       
+    <div class="card-body">
+        <table id="transactiontable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Transaction Id</th>
+                    <th>Type </th>
+                    <th>Operation</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                    <th>Symbol</th>
+                    <th>Bank</th>
+                    <th>Account</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                @foreach (var item in Model.Transactions)
+                {
+                    <tr>
+                        <td> @item.TransactionId</td>
+                        <td> @item.Type</td>
+                        <td>@item.Operation</td>
+                        <td> @item.Amount</td>
+                        <td>@item.Balance</td>
+                        <td>@item.Symbol</td>
+                        <td>@item.Bank</td>
+                        <td> @item.Account</td>
+                    </tr>
+
+                }
+
+
+            </tbody>
+        </table>
+
+        @if (Model.UserAccountTransctions.ShowMore() && Model.UserAccountTransctions.CustomerTransctionTotalNumber > 20)
+        {
+
+            <button onclick="Loadmore()">View More</button>
+
+        }
+
+    </div>
+        
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+        function Loadmore() {
+
+            $.ajax({
+                url: '/Account/LoadMore',
+                data: {
+
+                    currentnumber: @Model.UserAccountTransctions.CurrentLoadNumber,
+                    id: @Model.AccountId
+            },
+
+                datatype: "json",
+                type: "Post",
+                contenttype: 'application/json; charset=utf-8',
+                async: true,
+                success: function (data) {
+                    $("#loadmore").html(data);
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        }
+
+</script>
+

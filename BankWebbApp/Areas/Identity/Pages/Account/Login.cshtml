@@ -1,0 +1,59 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="hold-transition login-page">
+    <div class="card-body login-card-body">
+
+        <form id="account" method="post">
+
+            <div class="input-group mb-3">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                </div>
+               
+                    <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+
+
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+              
+              <br />
+
+
+                    <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+              <br />
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                           
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe">
+                                        <input asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
+                </div>
+
+        </form>
+
+</div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
